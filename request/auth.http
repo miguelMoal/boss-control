@@ -20,10 +20,22 @@ content-type: application/json
 
 
 ### production
-POST https://rif-server.vercel.app/api/auth
+POST https://boss-control-one.vercel.app/api/auth
 content-type: application/json
 
 {
-    "email": "juaan@example.com",
-    "password": "123456"
+    "email": "tesla@gmail.com",
+    "password": "tesla2324"
+}
+
+###
+POST https://boss-control-one.vercel.app/api/auth/new
+content-type: application/json
+
+{
+    "name": "Tesla",
+    "email": "tesla@gmail.com",
+    "password": "tesla2324",
+    "role": "ADMIN_ROLE", 
+    "phone": "1234567890"
 }
