@@ -1,6 +1,6 @@
 {
-  "name": "rif-server",
-  "alias": "rif-server.vercel.app",
+  "name": "boss-control",
+  "alias": "boss-control.vercel.app",
   "env": {
     "PORT": "8080",
     "DB_CNN": "mongodb+srv://miguel522:V28ONmX4LOWppKVF@rif.nasykwr.mongodb.net/rifdev",
