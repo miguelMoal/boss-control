@@ -1,0 +1,29 @@
+### eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2MzlmYjRkZmZiMDNkNDUxYTYyYzY0NTEiLCJuYW1lIjoianVhbiIsImlhdCI6MTY3MTQxMDkxMiwiZXhwIjoxNjcxNDk3MzEyfQ.Byt3zmIivF-UTDAHIqzv0F2JZu6k2_7D3-OgI4UwAwE
+POST http://localhost:8080/api/auth/new
+content-type: application/json
+
+{
+    "name": "juan",
+    "email": "juaan@example.com",
+    "password": "123456",
+    "role": "USER_ROLE", 
+    "phone": "1234567890"
+}
+###
+POST http://localhost:8080/api/auth
+content-type: application/json
+
+{
+    "email": "juaan@example.com",
+    "password": "123456"
+}
+
+
+### production
+POST https://rif-server.vercel.app/api/auth
+content-type: application/json
+
+{
+    "email": "juaan@example.com",
+    "password": "123456"
+}

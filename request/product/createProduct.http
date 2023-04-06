@@ -1,0 +1,15 @@
+
+POST http://localhost:8080/api/product
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDc1MDk2NCwiZXhwIjoxNjgwODM3MzY0fQ.VvNHJlxUT15NsLjtx5wbwKfxTbMKQraLFOmBETm7p0U
+
+{
+    "name": "Cable",
+    "priceSale": "60",
+    "priceBuy": "20",
+    "available": "5",
+    "preferenceInStock": "10",
+    "category": "all",
+    "brand": "Hora",
+    "color": "black"
+}

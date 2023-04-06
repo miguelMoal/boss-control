@@ -1,0 +1,9 @@
+POST http://localhost:8080/api/sale
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDc1MDk2NCwiZXhwIjoxNjgwODM3MzY0fQ.VvNHJlxUT15NsLjtx5wbwKfxTbMKQraLFOmBETm7p0U
+
+{
+    "productId": "642e397f611c3a49bf96cffc",
+    "quantity": "2",
+    "amount": "60"
+}

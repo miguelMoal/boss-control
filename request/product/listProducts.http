@@ -1,0 +1,5 @@
+
+Get http://localhost:8080/api/product
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDY2MjU2NCwiZXhwIjoxNjgwNzQ4OTY0fQ.rigXkEaVRTYYthrcm1x1rM6si-kXnmPxZ5dfKUHVPD4
+
