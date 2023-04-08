@@ -3,3 +3,8 @@ Get http://localhost:8080/api/product
 content-type: application/json
 x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDY2MjU2NCwiZXhwIjoxNjgwNzQ4OTY0fQ.rigXkEaVRTYYthrcm1x1rM6si-kXnmPxZ5dfKUHVPD4
 
+###
+Get https://boss-control-one.vercel.app/api/product
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJmMGQxNWExZDQ1MTEwOGI1ODZlYzUiLCJuYW1lIjoiVGVzbGEiLCJpYXQiOjE2ODA4MDU0MDIsImV4cCI6MTY4MDg5MTgwMn0.df8ss6smYnv3rgK5V4JKJSWzU3BQjdSICoU98yU1qtU
+

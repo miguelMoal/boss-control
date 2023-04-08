@@ -1,11 +1,27 @@
 
 POST http://localhost:8080/api/product
 content-type: application/json
-x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDc1MDk2NCwiZXhwIjoxNjgwODM3MzY0fQ.VvNHJlxUT15NsLjtx5wbwKfxTbMKQraLFOmBETm7p0U
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJmMGQxNWExZDQ1MTEwOGI1ODZlYzUiLCJuYW1lIjoiVGVzbGEiLCJpYXQiOjE2ODA4MDU0MDIsImV4cCI6MTY4MDg5MTgwMn0.df8ss6smYnv3rgK5V4JKJSWzU3BQjdSICoU98yU1qtU
 
 {
     "name": "Cable",
     "priceSale": "60",
+    "priceBuy": "20",
+    "available": "5",
+    "preferenceInStock": "10",
+    "category": "all",
+    "brand": "Hora",
+    "color": "black"
+}
+
+###
+POST https://boss-control-one.vercel.app/api/product
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJmMGQxNWExZDQ1MTEwOGI1ODZlYzUiLCJuYW1lIjoiVGVzbGEiLCJpYXQiOjE2ODA4MDU0MDIsImV4cCI6MTY4MDg5MTgwMn0.df8ss6smYnv3rgK5V4JKJSWzU3BQjdSICoU98yU1qtU
+
+{
+    "name": "Cargador",
+    "priceSale": "120",
     "priceBuy": "20",
     "available": "5",
     "preferenceInStock": "10",
