@@ -39,11 +39,12 @@ const updateSubUser = async (req, res) => {
       email,
       permissions,
     };
-    // if (usersUp?.password) {
-    //   const salt = bcrypt.genSaltSync();
-    //   usersUp.password = bcrypt.hashSync(req.body?.password, salt);
-    // }
-    // await SubUser.updateOne({ _id: req.body.userId }, usersUp);
+
+    if (req.body?.password) {
+      const salt = bcrypt.genSaltSync();
+      usersUp.password = bcrypt.hashSync(req.body?.password, salt);
+    }
+    await SubUser.updateOne({ _id: req.body.userId }, usersUp);
     res.status(200).json({
       ok: true,
       msg: "User updated successfully",
@@ -56,25 +57,25 @@ const updateSubUser = async (req, res) => {
   }
 };
 
-// const deleteSubUser = async (req, res) => {
-//   try {
-//     const userDeleted = await SubUser.findByIdAndDelete(req.params.id);
-//     if (!userDeleted) {
-//       return res.status(404).json({
-//         ok: false,
-//         msg: "The user was not found",
-//       });
-//     }
-//     res.status(200).json({
-//       ok: true,
-//       msg: "The user was deleted successfully",
-//     });
-//   } catch (error) {
-//     res.status(500).json({
-//       ok: false,
-//       msg: "Error deleting user",
-//     });
-//   }
-// };
+const deleteSubUser = async (req, res) => {
+  try {
+    const userDeleted = await SubUser.findByIdAndDelete(req.params.id);
+    if (!userDeleted) {
+      return res.status(404).json({
+        ok: false,
+        msg: "The user was not found",
+      });
+    }
+    res.status(200).json({
+      ok: true,
+      msg: "The user was deleted successfully",
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "Error deleting user",
+    });
+  }
+};
 
-module.exports = { createSubUser, updateSubUser };
+module.exports = { createSubUser, updateSubUser, deleteSubUser };

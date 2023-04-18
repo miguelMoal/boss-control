@@ -7,7 +7,7 @@ const { JWTValidate } = require("../meddlewares/JWTValidate");
 const {
   createSubUser,
   updateSubUser,
-  // deleteSubUser,
+  deleteSubUser,
 } = require("../controllers/SubUser.controller");
 
 router.use(JWTValidate);
@@ -35,6 +35,6 @@ router.put(
   updateSubUser
 );
 
-// router.delete("/:id", deleteSubUser);
+router.delete("/:id", deleteSubUser);
 
 module.exports = router;
