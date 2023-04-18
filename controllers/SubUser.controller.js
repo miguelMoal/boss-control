@@ -2,33 +2,33 @@ const SubUser = require("../models/SubUser");
 const bcrypt = require("bcryptjs");
 
 const createSubUser = async (req, res) => {
-  // const { name, email, password } = req.body;
-  // try {
-  //   let user = await SubUser.findOne({ email });
-  //   if (user) {
-  //     return res.status(400).json({
-  //       ok: false,
-  //       msg: "Email already exists",
-  //     });
-  //   }
-  //   const newSubUser = new SubUser({
-  //     adminId: req.uid,
-  //     ...req.body,
-  //   });
-  //   //Encriptar contraseña
-  //   const salt = bcrypt.genSaltSync();
-  //   newSubUser.password = bcrypt.hashSync(password, salt);
-  //   await newSubUser.save();
-  //   res.status(200).json({
-  //     ok: true,
-  //     msg: { name, email },
-  //   });
-  // } catch (error) {
-  //   res.status(500).json({
-  //     ok: false,
-  //     msg: "error when crete user",
-  //   });
-  // }
+  const { name, email, password } = req.body;
+  try {
+    let user = await SubUser.findOne({ email });
+    if (user) {
+      return res.status(400).json({
+        ok: false,
+        msg: "Email already exists",
+      });
+    }
+    const newSubUser = new SubUser({
+      adminId: req.uid,
+      ...req.body,
+    });
+    //Encriptar contraseña
+    const salt = bcrypt.genSaltSync();
+    newSubUser.password = bcrypt.hashSync(password, salt);
+    await newSubUser.save();
+    res.status(200).json({
+      ok: true,
+      msg: { name, email },
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "error when crete user",
+    });
+  }
 };
 
 // const updateSubUser = async (req, res) => {
