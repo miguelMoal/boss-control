@@ -4,11 +4,11 @@ const { fieldValidator } = require("../meddlewares/fieldValidator");
 const router = Router();
 const { JWTValidate } = require("../meddlewares/JWTValidate");
 
-// const {
-//   createSubUser,
-//   updateSubUser,
-//   deleteSubUser,
-// } = require("../controllers/SubUser.controller");
+const {
+  createSubUser,
+  updateSubUser,
+  deleteSubUser,
+} = require("../controllers/SubUser.controller");
 
 router.use(JWTValidate);
 
