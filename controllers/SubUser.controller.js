@@ -32,7 +32,7 @@ const createSubUser = async (req, res) => {
 };
 
 const updateSubUser = async (req, res) => {
-  const { name, email, permissions } = req.body;
+  const { name, email, permissions, password } = req.body;
   try {
     const usersUp = {
       name,
@@ -40,7 +40,7 @@ const updateSubUser = async (req, res) => {
       permissions,
     };
 
-    if (req.body?.password) {
+    if (password) {
       const salt = bcrypt.genSaltSync();
       usersUp.password = bcrypt.hashSync(req.body?.password, salt);
     }
