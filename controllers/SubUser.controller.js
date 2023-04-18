@@ -34,7 +34,7 @@ const createSubUser = async (req, res) => {
 const updateSubUser = async (req, res) => {
   const { name, email, permissions } = req.body;
   try {
-    let usersUp = {
+    const usersUp = {
       name,
       email,
       permissions,
