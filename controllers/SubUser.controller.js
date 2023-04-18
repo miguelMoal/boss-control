@@ -2,11 +2,19 @@ const SubUser = require("../models/SubUser");
 const bcrypt = require("bcryptjs");
 
 const getSubUsers = async (req, res) => {
-  const subUsers = await SubUser.find({ adminId: req.uid });
-  res.status(500).json({
-    ok: false,
-    msg: subUsers,
-  });
+  try {
+    const subUsers = await SubUser.find({ adminId: req.uid });
+    res.status(200).json({
+      ok: true,
+      msg: subUsers,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      msg: "Error to get users",
+    });
+  }
 };
 
 const createSubUser = async (req, res) => {
