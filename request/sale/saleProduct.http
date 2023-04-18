@@ -1,9 +1,36 @@
 POST http://localhost:8080/api/sale
 content-type: application/json
-x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDc1MDk2NCwiZXhwIjoxNjgwODM3MzY0fQ.VvNHJlxUT15NsLjtx5wbwKfxTbMKQraLFOmBETm7p0U
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTE3ODMzMn0.fQkTNaeHSXt0m1zhl6xC1RzX53ljwUXPnDfeL4b3wHY
 
 {
-    "productId": "642e397f611c3a49bf96cffc",
-    "quantity": "2",
-    "amount": "60"
+    "products": [
+        {
+            "productId": "642e397f611c3a49bf96cffc",
+            "quantity": "3"
+        },
+        {
+            "productId": "642e40334e0922548e935292",
+            "quantity": "3"
+        }
+    ]
+}
+
+###
+POST https://boss-control-one.vercel.app/api/sale
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTE3ODMzMn0.fQkTNaeHSXt0m1zhl6xC1RzX53ljwUXPnDfeL4b3wHY
+
+{
+    "products": [
+        {
+            "productId": "642e397f611c3a49bf96cffc",
+            "quantity": "1",
+            "amount": "110"
+        },
+        {
+            "productId": "642e40334e0922548e935292",
+            "quantity": "1",
+            "amount": "110"   
+        }
+    ]
 }

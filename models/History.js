@@ -6,19 +6,23 @@ const HistorySchema = Schema({
     ref: "User",
     required: true,
   },
-  productId: {
-    type: Schema.Types.ObjectId,
-    ref: "Product",
-    required: true,
-  },
-  quantity: {
-    type: Number,
-    required: true,
-  },
-  amount: {
-    type: Number,
-    required: true,
-  },
+  products: [
+    {
+      productId: {
+        type: Schema.Types.ObjectId,
+        ref: "Product",
+        required: true,
+      },
+      quantity: {
+        type: Number,
+        required: true,
+      },
+      amount: {
+        type: Number,
+        required: true,
+      },
+    },
+  ],
   date: {
     type: Date,
     default: Date.now,

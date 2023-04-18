@@ -15,12 +15,7 @@ router.use(JWTValidate);
 
 router.post(
   "/",
-  [
-    check("productId", "ID is required").not().isEmpty(),
-    check("quantity", "Quantity is required").not().isEmpty(),
-    check("amount", "Amount is required").not().isEmpty(),
-    fieldValidator,
-  ],
+  [check("products", "Products is required").not().isEmpty(), fieldValidator],
   sale
 );
 

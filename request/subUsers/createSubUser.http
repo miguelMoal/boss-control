@@ -1,0 +1,15 @@
+
+POST http://localhost:8080/api/sub-user
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTE3ODMzMn0.fQkTNaeHSXt0m1zhl6xC1RzX53ljwUXPnDfeL4b3wHY
+
+{
+    "name": "juan",
+    "email": "juan@example.com",
+    "password": "123456",
+    "permissions":[
+        {"name": "edit", "active": true},
+        {"name": "add", "active": true},
+        {"name": "delete", "active": true}
+    ]
+}

@@ -6,19 +6,19 @@ const ProductSchema = Schema({
     required: true,
   },
   priceSale: {
-    type: String,
+    type: Number,
     required: true,
   },
   priceBuy: {
-    type: String,
+    type: Number,
     required: true,
   },
   available: {
-    type: String,
+    type: Number,
     required: true,
   },
   preferenceInStock: {
-    type: String,
+    type: Number,
     required: true,
   },
   category: {

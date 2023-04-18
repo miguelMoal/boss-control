@@ -1,0 +1,5 @@
+
+DELETE http://localhost:8080/api/sub-user/643dcb8d669d9d6152d2f42b
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTE3ODMzMn0.fQkTNaeHSXt0m1zhl6xC1RzX53ljwUXPnDfeL4b3wHY
+
