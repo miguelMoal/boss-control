@@ -40,10 +40,10 @@ const updateSubUser = async (req, res) => {
       permissions,
     };
 
-    // if (password) {
-    //   const salt = bcrypt.genSaltSync();
-    //   usersUp.password = bcrypt.hashSync(req.body?.password, salt);
-    // }
+    if (password) {
+      //   const salt = bcrypt.genSaltSync();
+      //   usersUp.password = bcrypt.hashSync(req.body?.password, salt);
+    }
     await SubUser.updateOne({ _id: req.body.userId }, usersUp);
     res.status(200).json({
       ok: true,
