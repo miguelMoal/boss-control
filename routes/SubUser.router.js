@@ -6,7 +6,7 @@ const { JWTValidate } = require("../meddlewares/JWTValidate");
 
 const {
   createSubUser,
-  updateSubUser,
+  // updateSubUser,
   // deleteSubUser,
 } = require("../controllers/SubUser.controller");
 
