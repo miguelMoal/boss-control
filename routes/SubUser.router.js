@@ -6,34 +6,34 @@ const { JWTValidate } = require("../meddlewares/JWTValidate");
 
 const {
   createSubUser,
-  // updateSubUser,
+  updateSubUser,
   // deleteSubUser,
 } = require("../controllers/SubUser.controller");
 
 router.use(JWTValidate);
 
-// router.post(
-//   "/",
-//   [
-//     check("name", "Name is required").not().isEmpty(),
-//     check("email", "Email is required").not().isEmpty(),
-//     check("password", "Name is required").not().isEmpty(),
-//     fieldValidator,
-//   ],
-//   createSubUser
-// );
+router.post(
+  "/",
+  [
+    check("name", "Name is required").not().isEmpty(),
+    check("email", "Email is required").not().isEmpty(),
+    check("password", "Name is required").not().isEmpty(),
+    fieldValidator,
+  ],
+  createSubUser
+);
 
-// router.put(
-//   "/",
-//   [
-//     check("name", "Name is required").not().isEmpty(),
-//     check("email", "Email is required").not().isEmpty(),
-//     check("permissions", "Permissions is required").not().isEmpty(),
-//     check("userId", "UserId is required").not().isEmpty(),
-//     fieldValidator,
-//   ],
-//   updateSubUser
-// );
+router.put(
+  "/",
+  [
+    check("name", "Name is required").not().isEmpty(),
+    check("email", "Email is required").not().isEmpty(),
+    check("permissions", "Permissions is required").not().isEmpty(),
+    check("userId", "UserId is required").not().isEmpty(),
+    fieldValidator,
+  ],
+  updateSubUser
+);
 
 // router.delete("/:id", deleteSubUser);
 
