@@ -8,9 +8,12 @@ const {
   createSubUser,
   updateSubUser,
   deleteSubUser,
+  getSubUsers,
 } = require("../controllers/SubUser.controller");
 
 router.use(JWTValidate);
+
+router.get("/", getSubUsers);
 
 router.post(
   "/",

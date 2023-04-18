@@ -1,6 +1,14 @@
 const SubUser = require("../models/SubUser");
 const bcrypt = require("bcryptjs");
 
+const getSubUsers = async (req, res) => {
+  const subUsers = await SubUser.find({ adminId: req.uid });
+  res.status(500).json({
+    ok: false,
+    msg: subUsers,
+  });
+};
+
 const createSubUser = async (req, res) => {
   const { name, email, password } = req.body;
   try {
@@ -78,4 +86,4 @@ const deleteSubUser = async (req, res) => {
   }
 };
 
-module.exports = { createSubUser, updateSubUser, deleteSubUser };
+module.exports = { createSubUser, updateSubUser, deleteSubUser, getSubUsers };
