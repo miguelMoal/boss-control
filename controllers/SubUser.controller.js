@@ -38,7 +38,6 @@ const updateSubUser = async (req, res) => {
       name,
       email,
       permissions,
-      password: req.body?.password,
     };
     // if (usersUp?.password) {
     //   const salt = bcrypt.genSaltSync();
