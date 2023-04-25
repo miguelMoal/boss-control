@@ -147,12 +147,17 @@ const infoPeriods = async (req, res) => {
       },
     },
   ]);
-
+  const base = {
+    totalSales: 0,
+    totalPrice: 0,
+    name: "",
+    quantity: 0,
+  };
   const info = {
-    salesLastYear: { ...registros[0].salesLastYear[0] },
-    salesLast30Days: { ...registros[0].salesLast30Days[0] },
-    salesLast7Days: { ...registros[0].salesLast7Days[0] },
-    salesToday: { ...registros[0].salesToday[0] },
+    salesLastYear: { ...base, ...registros[0].salesLastYear[0] },
+    salesLast30Days: { ...base, ...registros[0].salesLast30Days[0] },
+    salesLast7Days: { ...base, ...registros[0].salesLast7Days[0] },
+    salesToday: { ...base, ...registros[0].salesToday[0] },
   };
 
   res.status(200).json({
