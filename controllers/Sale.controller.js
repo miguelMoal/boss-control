@@ -8,12 +8,9 @@ const sale = async (req, res) => {
   const productsToSave = [];
 
   const promises = products.map(async (p) => {
-    const product = await Product.findById(p.productId);
+    const product = await Product.findById(p.productId).lean();
     if (Number(product.available) >= Number(p.quantity)) {
-      // Actualizar propiedades del producto
       product.available = Number(product.available) - Number(p.quantity);
-      product.sold = Number(product.sold) + Number(p.quantity);
-      // Agregar producto a la matriz de productos a guardar
       productsToSave.push(product);
       return true;
     } else {
@@ -39,11 +36,22 @@ const sale = async (req, res) => {
     {}
   );
 
+  const productsIndexed = products.reduce(
+    (acc, el) => ({
+      ...acc,
+      [el.productId]: el,
+    }),
+    {}
+  );
+
   const transformProducts = () => {
-    const newProducts = products.map((p) => ({
+    const newProducts = productsToSave.map((p) => ({
       ...p,
+      quantity: Number(productsIndexed[p._id.toString()].quantity),
+      productId: productsIndexed[p._id.toString()].productId,
       amount:
-        Number(currProductsIndexed[p.productId].priceSale) * Number(p.quantity),
+        Number(currProductsIndexed[p._id.toString()].priceSale) *
+        Number(productsIndexed[p._id.toString()].quantity),
     }));
     return newProducts;
   };
@@ -86,7 +94,9 @@ const sale = async (req, res) => {
           Number(currProductsIndexed[product.productId].priceSale) *
           Number(product.quantity);
       } else {
-        isSale.products.push({ ...product });
+        transformProducts().forEach((p) => {
+          isSale.products.push(p);
+        });
       }
     });
     saveProductsUpdated();
