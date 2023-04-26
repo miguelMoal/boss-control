@@ -249,9 +249,12 @@ const getTopSellingProducts = async (req, res) => {
       },
     ]);
 
+    const names = topSellingProducts.map((p) => p.name);
+    const quantities = topSellingProducts.map((p) => p.quantity);
+
     res.status(200).json({
       ok: true,
-      products: topSellingProducts,
+      products: { names, quantities },
     });
   } catch (error) {
     res.status(500).json({
