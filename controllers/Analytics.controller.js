@@ -2,6 +2,7 @@ const History = require("../models/History");
 const Sale = require("../models/Sale");
 const mongoose = require("mongoose");
 
+const Product = require("../models/Product");
 const { getDatePeriod, getDateLastDays } = require("../helpers");
 
 const infoPeriods = async (req, res) => {
@@ -166,30 +167,35 @@ const infoPeriods = async (req, res) => {
   });
 };
 
-const getInfoLastWeek = async (req, res) => {
-  const date = getDateLastDays();
-
-  const registros = await History.find({
-    date: { $gte: date.init, $lte: date.end },
-  });
-
-  res.status(200).json({
-    ok: true,
-    msg: registros,
-  });
-};
-
-const getInfoLastMonth = async (req, res) => {
-  const date = getDateLastDays(29);
-
-  const registros = await History.find({
-    date: { $gte: date.init, $lte: date.end },
-  });
-
-  res.status(200).json({
-    ok: true,
-    msg: registros,
-  });
+const getTotalInvest = async (req, res) => {
+  try {
+    const totalInvest = await Product.aggregate([
+      {
+        $match: {
+          user: mongoose.Types.ObjectId(req.uid),
+        },
+      },
+      {
+        $group: {
+          _id: null,
+          priceBuy: { $sum: "$priceBuy" },
+          priceSale: { $sum: "$priceSale" },
+        },
+      },
+    ]);
+    res.status(200).json({
+      ok: true,
+      msg: {
+        total: totalInvest[0].priceBuy,
+        totalProfits: totalInvest[0].priceSale - totalInvest[0].priceBuy,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: "Error when get investment",
+    });
+  }
 };
 
 const getTopSellingProducts = async (req, res) => {
@@ -258,7 +264,6 @@ const getTopSellingProducts = async (req, res) => {
 
 module.exports = {
   infoPeriods,
-  getInfoLastWeek,
-  getInfoLastMonth,
   getTopSellingProducts,
+  getTotalInvest,
 };

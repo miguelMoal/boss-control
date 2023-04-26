@@ -6,16 +6,14 @@ const { JWTValidate } = require("../meddlewares/JWTValidate");
 
 const {
   infoPeriods,
-  getInfoLastWeek,
-  getInfoLastMonth,
   getTopSellingProducts,
+  getTotalInvest,
 } = require("../controllers/Analytics.controller");
 
 router.use(JWTValidate);
 
 router.get("/info-periods", infoPeriods);
-router.get("/info-last-week", getInfoLastWeek);
-router.get("/info-last-month", getInfoLastMonth);
 router.get("/get-top-selling", getTopSellingProducts);
+router.get("/total-invest", getTotalInvest);
 
 module.exports = router;
