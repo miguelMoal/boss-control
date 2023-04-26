@@ -254,7 +254,7 @@ const getTopSellingProducts = async (req, res) => {
 
     res.status(200).json({
       ok: true,
-      products: { names, quantities },
+      msg: { names, quantities },
     });
   } catch (error) {
     res.status(500).json({
