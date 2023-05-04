@@ -14,7 +14,7 @@ const infoPeriods = async (req, res) => {
   const registros = await History.aggregate([
     {
       $match: {
-        user: mongoose.Types.ObjectId(req.uid),
+        user: mongoose.Types.ObjectId(req.userId),
         date: { $gte: dateLastYear.init },
       },
     },
@@ -172,7 +172,7 @@ const getTotalInvest = async (req, res) => {
     const totalInvest = await Product.aggregate([
       {
         $match: {
-          user: mongoose.Types.ObjectId(req.uid),
+          user: mongoose.Types.ObjectId(req.userId),
         },
       },
       {
@@ -204,7 +204,7 @@ const getTopSellingProducts = async (req, res) => {
       // Filtramos las ventas del usuario en cuestión
       {
         $match: {
-          user: mongoose.Types.ObjectId(req.uid),
+          user: mongoose.Types.ObjectId(req.userId),
         },
       },
       // Desglosamos el array de productos en documentos individuales

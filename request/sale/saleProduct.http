@@ -5,7 +5,7 @@ x-token:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQ
 {
     "products": [
         {
-            "productId": "6434567647f9e6791d13bd7a",
+            "productId": "642e397f611c3a49bf96cffc",
             "quantity": "1"
         }
     ]
@@ -24,6 +24,22 @@ x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MW
         },
         {
             "productId": "642e40334e0922548e935292",
+            "quantity": "1"
+        }
+    ]
+}
+
+
+//Sale by sub user
+###
+POST http://localhost:8080/api/sale
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQ5ZDg2ZGIwNTkyMWRlNTI4NmMzNjMiLCJuYW1lIjoiTUlndWVsIEFuZ2VsIiwiaWF0IjoxNjgyNTYyMjc5fQ.zAeRzGnEBFF0KAwqXfzpsdXEAvhtRVxCx0kcc4Fhroc
+
+{
+    "products": [
+        {
+            "productId": "6434567647f9e6791d13bd7a",
             "quantity": "1"
         }
     ]

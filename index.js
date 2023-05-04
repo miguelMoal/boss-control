@@ -25,6 +25,8 @@ app.use("/api/product", require("./routes/Product.router"));
 app.use("/api/sale", require("./routes/Sale.router"));
 app.use("/api/subuser", require("./routes/SubUser.router"));
 app.use("/api/analytics", require("./routes/Analytics.router"));
+app.use("/api/subscription", require("./routes/Subscription.router"));
+app.use("/webhooks/stripe", require("./routes/WebhookStripe.router"));
 
 app.listen(process.env.PORT, () => {
   console.log(`servidor corriendo en el puerto ${process.env.PORT}`);

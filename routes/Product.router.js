@@ -8,17 +8,20 @@ const { check } = require("express-validator");
 const { fieldValidator } = require("../meddlewares/fieldValidator");
 const router = Router();
 const { JWTValidate } = require("../meddlewares/JWTValidate");
+const { validatePermissions } = require("../meddlewares/validatePermissions");
+const { findUser } = require("../meddlewares/findUser");
 
 const {
   getProducts,
   createProduct,
   updateProduct,
   deleteProduct,
+  addToStock,
 } = require("../controllers/Product.controller");
 
 router.use(JWTValidate);
 
-router.get("/", getProducts);
+router.get("/", findUser, getProducts);
 router.post(
   "/",
   [
@@ -33,10 +36,13 @@ router.post(
       .isEmpty(),
     check("category", "Category is required").not().isEmpty(),
     fieldValidator,
+    validatePermissions("add"),
   ],
+  findUser,
   createProduct
 );
-router.put("/:id", updateProduct);
-router.delete("/:id", deleteProduct);
+router.put("/:id", validatePermissions("edit"), updateProduct);
+router.patch("/add-to-stock/:id", validatePermissions("edit"), addToStock);
+router.delete("/:id", validatePermissions("delete"), findUser, deleteProduct);
 
 module.exports = router;

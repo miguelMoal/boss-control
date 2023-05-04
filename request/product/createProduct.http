@@ -29,3 +29,20 @@ x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJmMGQxNWExZDQ1MTEwOG
     "brand": "Hora",
     "color": "black"
 }
+
+//create product by sub user
+###
+POST http://localhost:8080/api/product
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQ5ZDg2ZGIwNTkyMWRlNTI4NmMzNjMiLCJuYW1lIjoiTUlndWVsIEFuZ2VsIiwiaWF0IjoxNjgyNTYyMjc5fQ.zAeRzGnEBFF0KAwqXfzpsdXEAvhtRVxCx0kcc4Fhroc
+
+{
+    "name": "hamburguesa",
+    "priceSale": "60",
+    "priceBuy": "20",
+    "available": "5",
+    "preferenceInStock": "10",
+    "category": "all",
+    "brand": "Hora",
+    "color": "black"
+}

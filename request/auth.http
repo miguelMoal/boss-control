@@ -24,8 +24,8 @@ POST https://boss-control-one.vercel.app/api/auth
 content-type: application/json
 
 {
-    "email": "fani@gmail.com",
-    "password": "123456789"
+    "email": "tesla@gmail.com",
+    "password": "tesla2324"
 }
 
 ###
@@ -38,4 +38,15 @@ content-type: application/json
     "password": "123456789",
     "role": "ADMIN_ROLE", 
     "phone": "1234567890"
+}
+
+
+//Auth subUser
+###
+POST http://localhost:8080/api/auth
+content-type: application/json
+
+{
+    "email": "moalmigue@gmail.com",
+    "password": "$Contraseña123"
 }

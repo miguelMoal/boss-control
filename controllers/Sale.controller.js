@@ -1,6 +1,8 @@
 const Sale = require("../models/Sale");
 const Product = require("../models/Product");
 const History = require("../models/History");
+const SubUser = require("../models/SubUser");
+const User = require("../models/User");
 
 const sale = async (req, res) => {
   const { products } = req.body;
@@ -53,11 +55,18 @@ const sale = async (req, res) => {
         Number(currProductsIndexed[p._id.toString()].priceSale) *
         Number(productsIndexed[p._id.toString()].quantity),
     }));
+    console.log("to his>>>>", newProducts);
     return newProducts;
   };
 
+  let user = null;
+  user = await User.findById(req.userId);
+  if (!user) {
+    user = await SubUser.findById(req.userId);
+  }
+  const id = user.role == "ADMIN_ROLE" ? req.userId : user.adminId;
   const history = new History({
-    user: req.uid,
+    user: id,
     products: transformProducts(),
   });
 
@@ -68,14 +77,15 @@ const sale = async (req, res) => {
   };
 
   try {
-    const isSale = await Sale.findOne({ user: req.uid });
+    const isSale = await Sale.findOne({ user: id });
     if (!isSale) {
       const sale = new Sale({
-        user: req.uid,
+        user: id,
         products: transformProducts(),
       });
       saveProductsUpdated();
-      await history.save();
+      const hisDB = await history.save();
+      console.log(hisDB);
       const saleDB = await sale.save();
       return res.status(200).json({
         ok: true,
@@ -100,7 +110,8 @@ const sale = async (req, res) => {
       }
     });
     saveProductsUpdated();
-    await history.save();
+    const hisDB = await history.save();
+    console.log(hisDB);
     const updatedSale = await isSale.save();
     return res.status(200).json({
       ok: true,

@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const SubUser = require("../models/SubUser");
 const bcrypt = require("bcryptjs");
 const { generateJWT } = require("../helpers/jwt");
 
@@ -43,7 +44,11 @@ const loginUser = async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    let user = null;
+    user = await User.findOne({ email });
+    if (!user) {
+      user = await SubUser.findOne({ email });
+    }
     if (!user) {
       return res.status(400).json({
         ok: false,

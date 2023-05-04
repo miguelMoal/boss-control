@@ -1,3 +1,10 @@
-DELETE  http://localhost:8080/api/product/642e2b00569da1ff489cd7cc
+DELETE  http://localhost:8080/api/product/6434574347f9e6791d13bd93
 content-type: application/json
-x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDJjZDlhOTlhN2Q2MTNiNWNlYjNlMmIiLCJuYW1lIjoianVhbiIsImlhdCI6MTY4MDY2MjU2NCwiZXhwIjoxNjgwNzQ4OTY0fQ.rigXkEaVRTYYthrcm1x1rM6si-kXnmPxZ5dfKUHVPD4
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTk0MDAyMX0.365gnemRtqfIMpfHL-CC9RId8xlwHgmRmNwz5StRY9U
+
+
+//delete by subUser (user miguel)
+###
+DELETE  http://localhost:8080/api/product/6434574347f9e6791d13bd93
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQ5ZDg2ZGIwNTkyMWRlNTI4NmMzNjMiLCJuYW1lIjoiTUlndWVsIEFuZ2VsIiwiaWF0IjoxNjgyNTYyMjc5fQ.zAeRzGnEBFF0KAwqXfzpsdXEAvhtRVxCx0kcc4Fhroc

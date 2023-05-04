@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 const { fieldValidator } = require("../meddlewares/fieldValidator");
 const router = Router();
 const { JWTValidate } = require("../meddlewares/JWTValidate");
+const { findUser } = require("../meddlewares/findUser");
 
 const {
   infoPeriods,
@@ -12,8 +13,8 @@ const {
 
 router.use(JWTValidate);
 
-router.get("/info-periods", infoPeriods);
-router.get("/get-top-selling", getTopSellingProducts);
-router.get("/total-invest", getTotalInvest);
+router.get("/info-periods", findUser, infoPeriods);
+router.get("/get-top-selling", findUser, getTopSellingProducts);
+router.get("/total-invest", findUser, getTotalInvest);
 
 module.exports = router;
