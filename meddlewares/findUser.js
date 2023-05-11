@@ -2,7 +2,7 @@ const SubUser = require("../models/SubUser");
 
 const findUser = async (req, res, next) => {
   try {
-    const user = await SubUser.findById(req.uid);
+    let user = await SubUser.findById(req.uid);
     if (!user) {
       req.userId = req.uid;
     } else {

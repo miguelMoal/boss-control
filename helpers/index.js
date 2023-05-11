@@ -45,4 +45,18 @@ const getDateLastDays = (days = 6) => {
   return { init: lastSevenDaysStart, end: todayEnd };
 };
 
-module.exports = { getDatePeriod, getDateLastDays };
+const getCurrentDate = () => {
+  const now = new Date();
+  const mexicoCityTime = new Date(
+    now.toLocaleString("en-US", { timeZone: "America/Mexico_City" })
+  );
+  const utcTime = new Date(
+    mexicoCityTime.toLocaleString("en-US", { timeZone: "UTC" })
+  );
+
+  utcTime.setDate(utcTime.getDate() - 1);
+  utcTime.setHours(utcTime.getHours() + 1);
+  return utcTime;
+};
+
+module.exports = { getDatePeriod, getDateLastDays, getCurrentDate };

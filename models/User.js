@@ -1,5 +1,7 @@
 const { Schema, model } = require("mongoose");
 
+const { getCurrentDate } = require("../helpers");
+
 const UsuarioSchema = Schema({
   name: {
     type: String,
@@ -31,6 +33,15 @@ const UsuarioSchema = Schema({
     type: Boolean,
     default: false,
   },
+  createdAt: { type: Date, default: getCurrentDate(), required: true },
+  subscriptionId: { type: String, default: null },
+  statusSubscription: { type: String, default: null },
+  currentPeriodStart: { type: Number, default: null },
+  currentPeriodEnd: { type: Number, default: null },
+  subscriptionCreatedAt: { type: Date, default: null },
+  subscriptionActive: { type: Boolean, default: false },
+  customerId: { type: String, default: null },
+  paymentMethodId: { type: String, default: null },
 });
 
 module.exports = model("User", UsuarioSchema);

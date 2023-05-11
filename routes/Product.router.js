@@ -9,6 +9,7 @@ const { fieldValidator } = require("../meddlewares/fieldValidator");
 const router = Router();
 const { JWTValidate } = require("../meddlewares/JWTValidate");
 const { validatePermissions } = require("../meddlewares/validatePermissions");
+const verifySubscription = require("../meddlewares/verifySubscription");
 const { findUser } = require("../meddlewares/findUser");
 
 const {
@@ -20,6 +21,7 @@ const {
 } = require("../controllers/Product.controller");
 
 router.use(JWTValidate);
+router.use(verifySubscription);
 
 router.get("/", findUser, getProducts);
 router.post(

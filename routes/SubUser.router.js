@@ -3,6 +3,7 @@ const { check } = require("express-validator");
 const { fieldValidator } = require("../meddlewares/fieldValidator");
 const router = Router();
 const { JWTValidate } = require("../meddlewares/JWTValidate");
+const verifySubscription = require("../meddlewares/verifySubscription");
 
 const {
   createSubUser,
@@ -12,6 +13,7 @@ const {
 } = require("../controllers/SubUser.controller");
 
 router.use(JWTValidate);
+router.use(verifySubscription);
 
 router.get("/", getSubUsers);
 

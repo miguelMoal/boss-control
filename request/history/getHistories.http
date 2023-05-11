@@ -1,0 +1,17 @@
+
+Get http://localhost:8080/api/history
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTk0MDAyMX0.365gnemRtqfIMpfHL-CC9RId8xlwHgmRmNwz5StRY9U
+
+###
+Get https://boss-control-one.vercel.app/api/history
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTE3ODMzMn0.fQkTNaeHSXt0m1zhl6xC1RzX53ljwUXPnDfeL4b3wHY
+
+//List Products by subUser
+###
+Get http://localhost:8080/api/history
+content-type: application/json
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQ5ZDg2ZGIwNTkyMWRlNTI4NmMzNjMiLCJuYW1lIjoiTUlndWVsIEFuZ2VsIiwiaWF0IjoxNjgyNTYyMjc5fQ.zAeRzGnEBFF0KAwqXfzpsdXEAvhtRVxCx0kcc4Fhroc
+
+ 
