@@ -10,6 +10,6 @@ const { getHistories } = require("../controllers/History.controller");
 router.use(JWTValidate);
 router.use(verifySubscription);
 
-router.get("/", findUser, getHistories);
+router.post("/", findUser, getHistories);
 
 module.exports = router;

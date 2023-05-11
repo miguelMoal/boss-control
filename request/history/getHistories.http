@@ -1,5 +1,5 @@
 
-Get http://localhost:8080/api/history
+POST  http://localhost:8080/api/history
 content-type: application/json
 x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTk0MDAyMX0.365gnemRtqfIMpfHL-CC9RId8xlwHgmRmNwz5StRY9U
 
