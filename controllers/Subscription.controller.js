@@ -32,7 +32,7 @@ const createSubscription = async (req, res) => {
     });
     const subscription = await stripe.subscriptions.create({
       customer: id || user.customerId,
-      items: [{ price: "plan_Nof20WDnKrtN4C" }],
+      items: [{ price: process.env.PRODUCT_KEY }],
       default_payment_method: user.paymentMethodId,
     });
     user.subscriptionId = subscription.id;
