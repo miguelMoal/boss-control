@@ -73,9 +73,7 @@ app.post(
           },
           { new: true }
         );
-        console.log(
-          `Subscription created for user ${user.name}: ${subscription.id}`
-        );
+        console.log(`Subscription created`);
         break;
 
       // Evento de suscripción cancelada
@@ -90,23 +88,21 @@ app.post(
           },
           { new: true }
         );
-        console.log(
-          `Subscription canceled for user ${userSubscriptionCanceled.name}: ${subscriptionId} at ${canceledAt}`
-        );
+        console.log(`Subscription canceled`);
         break;
 
       // Evento de error de pago
       case "invoice.payment_failed":
-        const customerId = event.data.object.customer;
-        const userPaymentFailed = await User.findOneAndUpdate(
-          { customerId: customerId },
-          {
-            statusSubscription: "unpaid",
-            subscriptionActive: false,
-          },
-          { new: true }
-        );
-        console.log(`Payment failed for user ${userPaymentFailed.name}`);
+        // const customerId = event.data.object.customer;
+        // const userPaymentFailed = await User.findOneAndUpdate(
+        //   { customerId: customerId },
+        //   {
+        //     statusSubscription: "unpaid",
+        //     subscriptionActive: false,
+        //   },
+        //   { new: true }
+        // );
+        console.log(`Payment failed for user`);
         break;
 
       // Otros eventos que no son importantes para el manejo de la suscripción
@@ -127,9 +123,7 @@ app.post(
           },
           { new: true }
         );
-        console.log(
-          `Subscription updated for user ${userSubscriptionUpdated.name}: ${event.data.object.id}`
-        );
+        console.log(`Subscription updated`);
         break;
 
       default:

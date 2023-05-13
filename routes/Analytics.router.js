@@ -10,6 +10,8 @@ const {
   infoPeriods,
   getTopSellingProducts,
   getTotalInvest,
+  getTotalProducts,
+  getWeeklySales,
 } = require("../controllers/Analytics.controller");
 
 router.use(JWTValidate);
@@ -18,5 +20,7 @@ router.use(verifySubscription);
 router.get("/info-periods", findUser, infoPeriods);
 router.get("/get-top-selling", findUser, getTopSellingProducts);
 router.get("/total-invest", findUser, getTotalInvest);
+router.get("/total-products", findUser, getTotalProducts);
+router.get("/weekly-sales", findUser, getWeeklySales);
 
 module.exports = router;

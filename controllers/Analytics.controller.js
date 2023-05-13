@@ -3,7 +3,11 @@ const Sale = require("../models/Sale");
 const mongoose = require("mongoose");
 
 const Product = require("../models/Product");
-const { getDatePeriod, getDateLastDays } = require("../helpers");
+const {
+  getDatePeriod,
+  getDateLastDays,
+  getCurrentDate,
+} = require("../helpers");
 
 const infoPeriods = async (req, res) => {
   const dateLastYear = getDateLastDays(364);
@@ -173,6 +177,7 @@ const getTotalInvest = async (req, res) => {
       {
         $match: {
           user: mongoose.Types.ObjectId(req.userId),
+          deleted: { $ne: true },
         },
       },
       {
@@ -265,8 +270,102 @@ const getTopSellingProducts = async (req, res) => {
   }
 };
 
+const getTotalProducts = async (req, res) => {
+  try {
+    const products = await Product.find({
+      user: req.userId,
+      deleted: { $ne: true },
+    });
+    res.status(200).json({
+      ok: true,
+      msg: products.length,
+    });
+  } catch (error) {
+    res.status(500).json({
+      ok: false,
+      msg: error,
+    });
+  }
+};
+
+const getWeeklySales = async (req, res) => {
+  try {
+    // Obtener el día actual
+    const today = new Date();
+    const dayOfWeek = today.getDay();
+
+    // Calcular la fecha de inicio y fin de la semana actual
+    const startOfWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() - dayOfWeek
+    );
+    const endOfWeek = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate() + (6 - dayOfWeek)
+    );
+
+    // Hacer la agregación en la colección de historial
+    const result = await History.aggregate([
+      { $match: { date: { $gte: startOfWeek, $lte: endOfWeek } } },
+      { $unwind: "$products" },
+      {
+        $group: {
+          _id: { $dayOfWeek: "$date" },
+          totalAmount: { $sum: "$products.amount" },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]);
+
+    // Crear el objeto con los datos en el formato esperado
+    const data = [];
+    const categories = [
+      "Domingo",
+      "Lunes",
+      "Martes",
+      "Miércoles",
+      "Jueves",
+      "Viernes",
+      "Sábado",
+    ];
+    for (let i = dayOfWeek; i < 7; i++) {
+      const dayResult = result.find((r) => r._id === i);
+      if (dayResult) {
+        data.push(dayResult.totalAmount);
+      } else {
+        data.push(0);
+      }
+    }
+    for (let i = 0; i < dayOfWeek; i++) {
+      const dayResult = result.find((r) => r._id === i);
+      if (dayResult) {
+        data.push(dayResult.totalAmount);
+      } else {
+        data.push(0);
+      }
+    }
+
+    // Enviar la respuesta con los datos
+    res.status(200).json({
+      ok: true,
+      data,
+      categories,
+    });
+  } catch (error) {
+    console.error("Error al obtener las ventas semanales:", error);
+    res.status(500).json({
+      ok: false,
+      msg: "Ha ocurrido un error al obtener las ventas semanales.",
+    });
+  }
+};
+
 module.exports = {
   infoPeriods,
   getTopSellingProducts,
   getTotalInvest,
+  getTotalProducts,
+  getWeeklySales,
 };

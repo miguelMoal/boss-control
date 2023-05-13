@@ -42,6 +42,7 @@ const UsuarioSchema = Schema({
   subscriptionActive: { type: Boolean, default: false },
   customerId: { type: String, default: null },
   paymentMethodId: { type: String, default: null },
+  cancelAtPeriodEnd: { type: Boolean, default: false },
 });
 
 module.exports = model("User", UsuarioSchema);
