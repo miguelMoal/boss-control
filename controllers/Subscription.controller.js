@@ -22,6 +22,14 @@ const createSubscription = async (req, res) => {
   };
 
   const subscribeUser = async (id) => {
+    await stripe.paymentMethods.attach(paymentMethod, {
+      customer: id || user.customerId,
+    });
+    await stripe.customers.update(id || user.customerId, {
+      invoice_settings: {
+        default_payment_method: paymentMethod,
+      },
+    });
     const subscription = await stripe.subscriptions.create({
       customer: id || user.customerId,
       items: [{ price: "plan_Nof20WDnKrtN4C" }],
@@ -31,6 +39,8 @@ const createSubscription = async (req, res) => {
     user.currentPeriodStart = subscription.current_period_start;
     user.currentPeriodEnd = subscription.current_period_end;
     user.statusSubscription = subscription.status;
+    user.paymentMethodId = paymentMethod;
+    user.subscriptionActive = subscription.status === "active";
     await user.save();
   };
 
@@ -90,10 +100,6 @@ const cancelSubscription = async (req, res) => {
     const canceledSubscription = await stripe.subscriptions.del(
       user.subscriptionId
     );
-    user.subscriptionId = "";
-    user.subscriptionActive = false;
-
-    await user.save();
 
     // Si se ha cancelado correctamente, devolver una respuesta de éxito
     res.status(200).json({

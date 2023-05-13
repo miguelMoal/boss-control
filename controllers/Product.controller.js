@@ -1,10 +1,11 @@
 const Product = require("../models/Product");
-const SubUser = require("../models/SubUser");
-const User = require("../models/User");
 
 const getProducts = async (req, res) => {
   try {
-    const products = await Product.find({ user: req.userId });
+    const products = await Product.find({
+      user: req.userId,
+      deleted: { $ne: true },
+    });
     res.status(200).json({
       ok: true,
       msg: products,
@@ -92,14 +93,15 @@ const addToStock = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findByIdAndDelete(req.params.id);
-
+    const product = await Product.findById(req.params.id);
     if (!product) {
       return res.status(404).json({
         ok: false,
         msg: "The product was not found",
       });
     }
+    product.deleted = true;
+    await product.save();
     res.status(200).json({
       ok: true,
       msg: "The product was deleted successfully",

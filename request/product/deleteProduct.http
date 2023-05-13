@@ -1,4 +1,4 @@
-DELETE  http://localhost:8080/api/product/6434574347f9e6791d13bd93
+DELETE  http://localhost:8080/api/product/645d5d23124cd16f94558e5e
 content-type: application/json
 x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MWQxM2JkNjAiLCJuYW1lIjoiRmFuaXNjYSIsImlhdCI6MTY4MTk0MDAyMX0.365gnemRtqfIMpfHL-CC9RId8xlwHgmRmNwz5StRY9U
 

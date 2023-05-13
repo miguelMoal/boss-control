@@ -38,6 +38,11 @@ const ProductSchema = Schema({
     ref: "User",
     required: true,
   },
+  deleted: {
+    type: Boolean,
+    required: true,
+    default: false,
+  },
 });
 
 module.exports = model("Product", ProductSchema);
