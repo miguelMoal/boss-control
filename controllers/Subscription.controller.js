@@ -41,6 +41,7 @@ const createSubscription = async (req, res) => {
     user.statusSubscription = subscription.status;
     user.paymentMethodId = paymentMethod;
     user.subscriptionActive = subscription.status === "active";
+    user.cancelAtPeriodEnd = false;
     await user.save();
   };
 
@@ -97,9 +98,13 @@ const cancelSubscription = async (req, res) => {
     const user = await User.findById(req.uid);
 
     // Cancelar la suscripción en Stripe
-    const canceledSubscription = await stripe.subscriptions.del(
-      user.subscriptionId
-    );
+    const rescan = await stripe.subscriptions.update(user.subscriptionId, {
+      cancel_at_period_end: true,
+    });
+    if (rescan.cancel_at_period_end) {
+      user.cancelAtPeriodEnd = rescan.cancel_at_period_end;
+      await user.save();
+    }
 
     // Si se ha cancelado correctamente, devolver una respuesta de éxito
     res.status(200).json({
