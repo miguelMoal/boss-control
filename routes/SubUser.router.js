@@ -4,6 +4,7 @@ const { fieldValidator } = require("../meddlewares/fieldValidator");
 const router = Router();
 const { JWTValidate } = require("../meddlewares/JWTValidate");
 const verifySubscription = require("../meddlewares/verifySubscription");
+const { validatePermissions } = require("../meddlewares/validatePermissions");
 
 const {
   createSubUser,
@@ -25,6 +26,7 @@ router.post(
     check("password", "Name is required").not().isEmpty(),
     fieldValidator,
   ],
+  validatePermissions("add"),
   createSubUser
 );
 
@@ -37,9 +39,10 @@ router.put(
     check("userId", "UserId is required").not().isEmpty(),
     fieldValidator,
   ],
+  validatePermissions("edit"),
   updateSubUser
 );
 
-router.delete("/:id", deleteSubUser);
+router.delete("/:id",validatePermissions("delete"), deleteSubUser);
 
 module.exports = router;
