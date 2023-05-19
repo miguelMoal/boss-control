@@ -12,6 +12,6 @@ x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDM0NTNkYjQ3ZjllNjc5MW
 ###
 Get http://localhost:8080/api/product
 content-type: application/json
-x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDQ5ZDg2ZGIwNTkyMWRlNTI4NmMzNjMiLCJuYW1lIjoiTUlndWVsIEFuZ2VsIiwiaWF0IjoxNjgyNTYyMjc5fQ.zAeRzGnEBFF0KAwqXfzpsdXEAvhtRVxCx0kcc4Fhroc
+x-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2NDY3YzI1YzE4YmM1ZTM0MjkyNDFmMjIiLCJuYW1lIjoidHJhYmFqYWRvciIsImlhdCI6MTY4NDUyODI5OH0.zVLoitqibT-GA428mzBzK_VVfnsWYCJd30kOqEtgHRc
 
  

@@ -47,6 +47,6 @@ POST http://localhost:8080/api/auth
 content-type: application/json
 
 {
-    "email": "moalmigue@gmail.com",
-    "password": "$Contraseña123"
+    "email": "trabajador@gmail.com",
+    "password": "$Contra123"
 }
