@@ -42,6 +42,7 @@ const createSubscription = async (req, res) => {
         items: [{ price: process.env.PRODUCT_KEY }],
         default_payment_method: paymentMethod,
       });
+      console.log("subscription>>", subscription, "customerId:",customerId, "user.customerId:", user.customerId)
 
       user.subscriptionId = subscription.id;
       user.currentPeriodStart = subscription.current_period_start;
@@ -71,7 +72,7 @@ const createSubscription = async (req, res) => {
           default_payment_method: paymentMethod,
         },
       });
-
+console.log("customer>>", customer, paymentMethod)
       user.customerId = customer.id;
       user.paymentMethodId = paymentMethod;
       await subscribeUser(customer.id);
