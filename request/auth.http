@@ -20,16 +20,16 @@ content-type: application/json
 
 
 ### production
-POST https://boss-control-one.vercel.app/api/auth
+POST boss-control-tau.vercel.app/api/auth
 content-type: application/json
 
 {
-    "email": "tesla@gmail.com",
+    "email": "luis_23o24@hotmail.com",
     "password": "tesla2324"
 }
 
 ###
-POST https://boss-control-one.vercel.app/api/auth/new
+POST boss-control-tau.vercel.app/api/auth/new
 content-type: application/json
 
 {
