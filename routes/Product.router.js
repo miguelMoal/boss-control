@@ -48,4 +48,3 @@ router.patch("/add-to-stock/:id", validatePermissions("edit"), addToStock);
 router.delete("/:id", validatePermissions("delete"), findUser, deleteProduct);
 
 module.exports = router;
-//
