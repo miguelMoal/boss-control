@@ -42,6 +42,7 @@ const createSubscription = async (req, res) => {
         items: [{ price: process.env.PRODUCT_KEY }],
         default_payment_method: paymentMethod,
       });
+      console.log("subscription>>", subscription, "customerId:",customerId, "user.customerId:", user.customerId)
 
       user.subscriptionId = subscription.id;
       user.currentPeriodStart = subscription.current_period_start;
@@ -71,7 +72,7 @@ const createSubscription = async (req, res) => {
           default_payment_method: paymentMethod,
         },
       });
-
+console.log("customer>>", customer, paymentMethod)
       user.customerId = customer.id;
       user.paymentMethodId = paymentMethod;
       await subscribeUser(customer.id);
@@ -90,27 +91,12 @@ const createSubscription = async (req, res) => {
     }
   } catch (error) {
     console.log('Error:', error);
-
-    // Manejo de errores específicos de Stripe
-    if (error.code === 'card_declined') {
-      res.status(400).json({
-        ok: false,
-        msg: 'Card declined. Please check your card details.',
-      });
-    } else if (error.code === 'insufficient_funds') {
-      res.status(400).json({
-        ok: false,
-        msg: 'Insufficient funds. Please make sure you have enough balance.',
-      });
-    } else {
-      res.status(500).json({
-        ok: false,
-        msg: 'Error',
-      });
-    }
+    res.status(500).json({
+      ok: false,
+      msg: 'Error',
+    });
   }
 };
-
 
 const cancelSubscription = async (req, res) => {
   try {
