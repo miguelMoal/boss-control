@@ -4,59 +4,61 @@ const User = require("../models/User");
 const createSubscription = async (req, res) => {
   const { paymentMethod } = req.body;
   const { uid } = req;
-  let customerExists = false;
   const user = await User.findById(uid);
 
-  const alreadySubscribe = async (id) => {
-    const subscriptions = await stripe.subscriptions.list({
-      customer: id,
-    });
-    const sub = subscriptions.data.filter(
-      (sub) => sub.id == user.subscriptionId
-    );
-    if (sub.length > 0) {
-      return sub[0].status == "active";
-    } else {
-      return false;
+  try {
+    let customerExists = true;
+
+    // Verificar si el cliente existe en Stripe
+    try {
+      await stripe.customers.retrieve(user.customerId);
+    } catch (error) {
+      customerExists = false;
     }
-  };
 
-  const subscribeUser = async (id) => {
-    await stripe.paymentMethods.attach(paymentMethod, {
-      customer: id || user.customerId,
-    });
-    await stripe.customers.update(id || user.customerId, {
-      invoice_settings: {
+    // Verificar si el cliente ya tiene una suscripción activa
+    const alreadySubscribed = async (customerId) => {
+      const subscriptions = await stripe.subscriptions.list({
+        customer: customerId,
+      });
+
+      return subscriptions.data.some((sub) => sub.status === 'active');
+    };
+
+    // Crear o actualizar el cliente y suscribirlo
+    const subscribeUser = async (customerId) => {
+      await stripe.paymentMethods.attach(paymentMethod, {
+        customer: customerId || user.customerId,
+      });
+
+      await stripe.customers.update(customerId || user.customerId, {
+        invoice_settings: {
+          default_payment_method: paymentMethod,
+        },
+      });
+
+      const subscription = await stripe.subscriptions.create({
+        customer: customerId || user.customerId,
+        items: [{ price: process.env.PRODUCT_KEY }],
         default_payment_method: paymentMethod,
-      },
-    });
-    const subscription = await stripe.subscriptions.create({
-      customer: id || user.customerId,
-      items: [{ price: process.env.PRODUCT_KEY }],
-      default_payment_method: user.paymentMethodId,
-    });
-    user.subscriptionId = subscription.id;
-    user.currentPeriodStart = subscription.current_period_start;
-    user.currentPeriodEnd = subscription.current_period_end;
-    user.statusSubscription = subscription.status;
-    user.paymentMethodId = paymentMethod;
-    user.subscriptionActive = subscription.status === "active";
-    user.cancelAtPeriodEnd = false;
-    await user.save();
-  };
+      });
 
-  try {
-    await stripe.customers.retrieve(user.customerId);
-    customerExists = true;
-  } catch (error) {
-    // console.log(error);
-  }
+      user.subscriptionId = subscription.id;
+      user.currentPeriodStart = subscription.current_period_start;
+      user.currentPeriodEnd = subscription.current_period_end;
+      user.statusSubscription = subscription.status;
+      user.paymentMethodId = paymentMethod;
+      user.subscriptionActive = subscription.status === 'active';
+      user.cancelAtPeriodEnd = false;
 
-  try {
+      await user.save();
+    };
+
     let subscriptionExist = false;
+
     if (customerExists) {
-      const exist = await alreadySubscribe(user.customerId);
-      if (!exist) {
+      const isSubscribed = await alreadySubscribed(user.customerId);
+      if (!isSubscribed) {
         await subscribeUser();
       } else {
         subscriptionExist = true;
@@ -69,26 +71,28 @@ const createSubscription = async (req, res) => {
           default_payment_method: paymentMethod,
         },
       });
+
       user.customerId = customer.id;
       user.paymentMethodId = paymentMethod;
       await subscribeUser(customer.id);
     }
+
     if (!subscriptionExist) {
       res.status(200).json({
         ok: true,
-        msg: "The subscription was generated correctly",
+        msg: 'The subscription was generated correctly',
       });
     } else {
       res.status(409).json({
         ok: false,
-        msg: "Subscription already exist",
+        msg: 'Subscription already exists',
       });
     }
   } catch (error) {
-    console.log("real>>>>>>", error);
+    console.log('Error:', error);
     res.status(500).json({
       ok: false,
-      msg: "Error",
+      msg: 'Error',
     });
   }
 };
