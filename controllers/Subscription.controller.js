@@ -84,7 +84,7 @@ const createSubscription = async (req, res) => {
     if (error.code === "card_declined") {
       res.status(400).json({
         ok: false,
-        msg: "Card declined. Please check your card details.",
+        msg: "Tarjeta rechazada. Por favor, compruebe los datos de su tarjeta.",
       });
     } else if (
       error.code === "insufficient_funds" ||
@@ -92,12 +92,12 @@ const createSubscription = async (req, res) => {
     ) {
       res.status(400).json({
         ok: false,
-        msg: "Insufficient funds. Please make sure you have enough balance.",
+        msg: "Fondos insuficientes.",
       });
     } else {
       res.status(500).json({
         ok: false,
-        msg: "Error",
+        msg: "Error inesperado",
       });
     }
   }

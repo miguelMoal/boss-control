@@ -6,7 +6,6 @@
     "DB_CNN": "mongodb+srv://miguel522:V28ONmX4LOWppKVF@rif.nasykwr.mongodb.net/bossControl",
     "SECRET_JWT_SEED": "35t0_3s_Un4_P4146r4_S3cr3t4",
     "GOOGLE_APPLICATION_CREDENTIALS": "./service_account_key.json",
-    "STRIPE_SECRET_KEY": "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",
     "PRODUCT_KEY": "price_1N7QqGKIMXWjyb0Reay5hqTf",
     "WEBHOOK_KEY": "whsec_Zu9Cb0hKs9kO0nE9XIwQcs3SHiIPwuhE"
   },
