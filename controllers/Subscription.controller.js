@@ -23,27 +23,27 @@ const createSubscription = async (req, res) => {
     };
     // Crear o actualizar el cliente y suscribirlo
     const subscribeUser = async (customerId) => {
-      // await stripe.paymentMethods.attach(paymentMethod, {
-      //   customer: customerId || user.customerId,
-      // });
-      // await stripe.customers.update(customerId || user.customerId, {
-      //   invoice_settings: {
-      //     default_payment_method: paymentMethod,
-      //   },
-      // });
-      // const subscription = await stripe.subscriptions.create({
-      //   customer: customerId || user.customerId,
-      //   items: [{ price: process.env.PRODUCT_KEY }],
-      //   default_payment_method: paymentMethod,
-      // });
-      // user.subscriptionId = subscription.id;
-      // user.currentPeriodStart = subscription.current_period_start;
-      // user.currentPeriodEnd = subscription.current_period_end;
-      // user.statusSubscription = subscription.status;
-      // user.paymentMethodId = paymentMethod;
-      // user.subscriptionActive = subscription.status === "active";
-      // user.cancelAtPeriodEnd = false;
-      // await user.save();
+      await stripe.paymentMethods.attach(paymentMethod, {
+        customer: customerId || user.customerId,
+      });
+      await stripe.customers.update(customerId || user.customerId, {
+        invoice_settings: {
+          default_payment_method: paymentMethod,
+        },
+      });
+      const subscription = await stripe.subscriptions.create({
+        customer: customerId || user.customerId,
+        items: [{ price: process.env.PRODUCT_KEY }],
+        default_payment_method: paymentMethod,
+      });
+      user.subscriptionId = subscription.id;
+      user.currentPeriodStart = subscription.current_period_start;
+      user.currentPeriodEnd = subscription.current_period_end;
+      user.statusSubscription = subscription.status;
+      user.paymentMethodId = paymentMethod;
+      user.subscriptionActive = subscription.status === "active";
+      user.cancelAtPeriodEnd = false;
+      await user.save();
     };
     let subscriptionExist = false;
     if (customerExists) {
@@ -58,13 +58,13 @@ const createSubscription = async (req, res) => {
       const customer = await stripe.customers.create({
         payment_method: paymentMethod,
         email: user.email,
-        // invoice_settings: {
-        //   default_payment_method: paymentMethod,
-        // },
+        invoice_settings: {
+          default_payment_method: paymentMethod,
+        },
       });
-      // user.customerId = customer.id;
-      // user.paymentMethodId = paymentMethod;
-      // await subscribeUser(customer.id);
+      user.customerId = customer.id;
+      user.paymentMethodId = paymentMethod;
+      await subscribeUser(customer.id);
     }
     if (!subscriptionExist) {
       res.status(200).json({
