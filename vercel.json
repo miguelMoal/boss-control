@@ -1,14 +1,6 @@
 {
   "name": "boss-control",
   "alias": "boss-control-inventary.vercel.app",
-  "env": {
-    "PORT": "8080",
-    "DB_CNN": "mongodb+srv://miguel522:V28ONmX4LOWppKVF@rif.nasykwr.mongodb.net/bossControl",
-    "SECRET_JWT_SEED": "35t0_3s_Un4_P4146r4_S3cr3t4",
-    "GOOGLE_APPLICATION_CREDENTIALS": "./service_account_key.json",
-    "PRODUCT_KEY": "price_1N7QqGKIMXWjyb0Reay5hqTf",
-    "WEBHOOK_KEY": "whsec_Zu9Cb0hKs9kO0nE9XIwQcs3SHiIPwuhE"
-  },
   "version": 2,
   "builds": [
     {
