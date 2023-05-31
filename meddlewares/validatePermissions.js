@@ -23,7 +23,7 @@ const validatePermissions = (requiredPermission) => async (req, res, next) => {
     if (!hasPermission) {
       return res.status(403).json({
         ok: false,
-        msg: "You do not have permission to access this resource",
+        msg: "No cuenta con los permisos necesarios.",
       });
     }
   }
