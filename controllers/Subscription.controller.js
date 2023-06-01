@@ -34,6 +34,7 @@ const createSubscription = async (req, res) => {
       const subscription = await stripe.subscriptions.create({
         customer: customerId || user.customerId,
         items: [{ price: process.env.PRODUCT_KEY }],
+        trial_period_days: customerId ? 0 : 30,
         default_payment_method: paymentMethod,
       });
       user.subscriptionId = subscription.id;
@@ -45,6 +46,7 @@ const createSubscription = async (req, res) => {
       user.cancelAtPeriodEnd = false;
       await user.save();
     };
+
     let subscriptionExist = false;
     if (customerExists) {
       const isSubscribed = await alreadySubscribed(user.customerId);
@@ -54,7 +56,6 @@ const createSubscription = async (req, res) => {
         subscriptionExist = true;
       }
     } else {
-      console.log(paymentMethod);
       const customer = await stripe.customers.create({
         payment_method: paymentMethod,
         email: user.email,

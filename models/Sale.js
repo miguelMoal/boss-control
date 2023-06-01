@@ -27,8 +27,13 @@ const SaleSchema = Schema({
   ],
   date: {
     type: Date,
-    default: getCurrentDate(),
+    default: new Date(),
     required: true,
+  },
+  timestamp: {
+    type: Number,
+    required: true,
+    default: Math.floor(Date.now() / 1000),
   },
 });
 

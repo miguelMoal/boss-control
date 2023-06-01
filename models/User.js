@@ -33,7 +33,7 @@ const UsuarioSchema = Schema({
     type: Boolean,
     default: false,
   },
-  createdAt: { type: Date, default: getCurrentDate(), required: true },
+  createdAt: { type: Date, default: new Date(), required: true },
   subscriptionId: { type: String, default: null },
   statusSubscription: { type: String, default: null },
   currentPeriodStart: { type: Number, default: null },
@@ -43,6 +43,11 @@ const UsuarioSchema = Schema({
   customerId: { type: String, default: null },
   paymentMethodId: { type: String, default: null },
   cancelAtPeriodEnd: { type: Boolean, default: false },
+  timestamp: {
+    type: Number,
+    required: true,
+    default: Math.floor(Date.now() / 1000),
+  },
 });
 
 module.exports = model("User", UsuarioSchema);

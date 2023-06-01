@@ -41,6 +41,11 @@ const SubUserSchema = Schema({
     ref: "User",
     required: true,
   },
+  timestamp: {
+    type: Number,
+    required: true,
+    default: Math.floor(Date.now() / 1000),
+  },
 });
 
 module.exports = model("SubUser", SubUserSchema);

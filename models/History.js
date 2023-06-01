@@ -1,7 +1,5 @@
 const { Schema, model } = require("mongoose");
 
-const { getCurrentDate } = require("../helpers");
-
 const HistorySchema = Schema({
   user: {
     type: Schema.Types.ObjectId,
@@ -27,8 +25,13 @@ const HistorySchema = Schema({
   ],
   date: {
     type: Date,
-    default: getCurrentDate(),
+    default: new Date(),
     required: true,
+  },
+  timestamp: {
+    type: Number,
+    required: true,
+    default: Math.floor(Date.now() / 1000),
   },
 });
 

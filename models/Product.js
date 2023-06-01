@@ -43,6 +43,11 @@ const ProductSchema = Schema({
     required: true,
     default: false,
   },
+  timestamp: {
+    type: Number,
+    required: true,
+    default: Math.floor(Date.now() / 1000),
+  },
 });
 
 module.exports = model("Product", ProductSchema);
