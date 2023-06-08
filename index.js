@@ -79,22 +79,17 @@ app.post(
 
       // Evento de suscripción cancelada
       case "customer.subscription.deleted":
-        try {
-          const subscriptionId = event.data.object.id;
-          const canceledAt = event.data.object.canceled_at;
-          const userSubscriptionCanceled = await User.findOneAndUpdate(
-            { subscriptionId: subscriptionId },
-            {
-              statusSubscription: "canceled",
-              subscriptionActive: false,
-            },
-            { new: true }
-          );
-          console.log(`Subscription canceled`);
-        } catch (error) {
-          console.log(error);
-        }
-
+        const subscriptionId = event.data.object.id;
+        const canceledAt = event.data.object.canceled_at;
+        const userSubscriptionCanceled = await User.findOneAndUpdate(
+          { subscriptionId: subscriptionId },
+          {
+            statusSubscription: "canceled",
+            subscriptionActive: false,
+          },
+          { new: true }
+        );
+        console.log(`Subscription canceled`);
         break;
 
       // Evento de error de pago
