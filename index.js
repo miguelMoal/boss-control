@@ -6,12 +6,8 @@ require("dotenv").config();
 const cors = require("cors");
 const { dbConnection } = require("./database/config");
 const fileUpload = require("express-fileupload");
-const stripe = require("stripe")(
-  "sk_test_51MIbFPKIMXWjyb0RGU6X9RpKl0PipuBRwxZp2oTUwKqaxfYE6ULquozBP4i3DOUCJwxJx6rnhoRGsT7nbtTnhJ4N00Cc4G9JWZ"
-);
+const stripe = require("../config/configStripe");
 
-const endpointSecret =
-  "whsec_079629eca5fe7633b4ba18f84424ba494a3e5875c09449297757e92a977d84d0";
 const app = express();
 
 // //BASE DE DATOS
@@ -52,7 +48,11 @@ app.post(
     let event;
 
     try {
-      event = stripe.webhooks.constructEvent(request.body, sig, endpointSecret);
+      event = stripe.webhooks.constructEvent(
+        request.body,
+        sig,
+        process.env.WEBHOOK_KEY
+      );
     } catch (err) {
       response.status(400).send(`Webhook Error: ${err.message}`);
       return;
