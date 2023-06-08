@@ -44,7 +44,7 @@ app.use("/api/history", require("./routes/History.router"));
 app.use("/api/user", require("./routes/User.router"));
 // app.use("/webhooks/stripe", require("./routes/WebhookStripe.router"));
 app.post(
-  "/webhooks/stripe",
+  "/api/webhooks/stripe",
   express.raw({ type: "application/json" }),
   async (request, response) => {
     const sig = request.headers["stripe-signature"];
@@ -79,16 +79,16 @@ app.post(
 
       // Evento de suscripción cancelada
       case "customer.subscription.deleted":
-        // const subscriptionId = event.data.object.id;
-        // const canceledAt = event.data.object.canceled_at;
-        // const userSubscriptionCanceled = await User.findOneAndUpdate(
-        //   { subscriptionId: subscriptionId },
-        //   {
-        //     statusSubscription: "canceled",
-        //     subscriptionActive: false,
-        //   },
-        //   { new: true }
-        // );
+        const subscriptionId = event.data.object.id;
+        const canceledAt = event.data.object.canceled_at;
+        const userSubscriptionCanceled = await User.findOneAndUpdate(
+          { subscriptionId: subscriptionId },
+          {
+            statusSubscription: "canceled",
+            subscriptionActive: false,
+          },
+          { new: true }
+        );
         console.log(`Subscription canceled`);
         break;
 
