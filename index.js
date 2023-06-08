@@ -6,7 +6,7 @@ require("dotenv").config();
 const cors = require("cors");
 const { dbConnection } = require("./database/config");
 const fileUpload = require("express-fileupload");
-const stripe = require("../config/configStripe");
+const stripe = require("./config/configStripe");
 
 const app = express();
 
