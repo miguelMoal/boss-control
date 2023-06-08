@@ -16,7 +16,7 @@ dbConnection();
 app.use(cors());
 
 app.use((req, res, next) => {
-  if (req.originalUrl === "/webhooks/stripe") {
+  if (req.originalUrl === "/api/webhooks/stripe") {
     next();
   } else {
     express.json()(req, res, next);
